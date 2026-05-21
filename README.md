@@ -1,5 +1,7 @@
 # Docs Intelligence Agent
 
+[![CI](https://github.com/m4rv4x/docs-intelligence-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/m4rv4x/docs-intelligence-agent/actions/workflows/ci.yml)
+
 A taste-driven GitHub maintenance system focused on one public wedge: **making repositories easier to understand, trust, and adopt**.
 
 This project is not trying to be a magical "autonomous software engineer".
@@ -152,14 +154,20 @@ The social layer now also renders a Markdown observer report with:
 
 ### Validation
 
-Current validation command:
+Current baseline validation commands:
 
 ```bash
+python -m compileall src
+python -m json.tool policies/engineering_rules.json > /dev/null
+python -m json.tool policies/safety_rules.json > /dev/null
 python -m unittest discover -s tests -v
 ```
+
+These same checks now run in GitHub Actions on pushes to `main` and on pull requests.
 
 ## GitHub workflow defaults
 
 The repository now includes:
 - a pull request template with rationale, risk, tradeoffs, and validation
 - an issue template for small, reviewable repo improvements
+- a baseline GitHub Actions CI workflow that runs compile, policy, and unit-test checks

@@ -16,3 +16,4 @@
 - Example observer report artifact in docs
 - Issue template for small repo improvements
 - Pull request template with rationale, risk, tradeoffs, and validation
+- Baseline GitHub Actions CI for compile, policy, and unit-test validation
