@@ -1,0 +1,12 @@
+[project]
+name = "docs-intelligence-agent"
+version = "0.1.0"
+description = "A taste-driven GitHub docs-and-maintenance agent focused on visible public value."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "Marvax" }
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

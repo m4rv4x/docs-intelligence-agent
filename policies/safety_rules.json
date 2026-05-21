@@ -1,0 +1,23 @@
+{
+  "approval_policy": {
+    "require_human_approval_for": [
+      "opening public PRs",
+      "pushing non-trivial branches",
+      "multi-file refactors",
+      "security-sensitive changes",
+      "positioning changes that affect public narrative"
+    ]
+  },
+  "execution_limits": [
+    "prefer draft proposals before broad edits",
+    "execute one useful improvement at a time",
+    "keep blast radius low",
+    "stop when validation is weak or ambiguous"
+  ],
+  "communication_rules": [
+    "separate facts from assumptions",
+    "do not overclaim autonomy or impact",
+    "make validation easy to inspect",
+    "use clear rationale in public artifacts"
+  ]
+}

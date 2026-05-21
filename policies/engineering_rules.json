@@ -1,0 +1,30 @@
+{
+  "project_wedge": "docs_intelligence_agent",
+  "engineering_principles": [
+    "prefer simplicity",
+    "avoid abstractions early",
+    "small PRs only",
+    "prefer reversible changes",
+    "tests before refactor when practical",
+    "docs with every meaningful feature",
+    "explain tradeoffs in every important PR",
+    "optimize for maintainer trust",
+    "stop when confidence drops"
+  ],
+  "task_selection": {
+    "prefer": [
+      "visible usefulness",
+      "documentation clarity",
+      "reviewable diffs",
+      "clear before_after improvements",
+      "artifacts that strengthen repository narrative"
+    ],
+    "avoid": [
+      "cosmetic churn",
+      "speculative refactors",
+      "spam PR throughput",
+      "generic autonomy demos",
+      "changes with weak public value"
+    ]
+  }
+}
