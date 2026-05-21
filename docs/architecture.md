@@ -38,6 +38,12 @@ Planned responsibilities:
 - detect missing architecture explanation
 - summarize CI and issue context when available
 
+Implemented in v0.1 slice:
+- detect `README.md`
+- detect `docs/` presence
+- count Markdown and Python files
+- detect missing public docs for repo storytelling and trust artifacts
+
 ### planner/
 Turns observations into ranked, bounded work items.
 
@@ -47,6 +53,9 @@ Planned responsibilities:
 - estimate reviewability
 - estimate narrative value
 - choose the next small change worth proposing
+
+Implemented in v0.1 slice:
+- prioritize missing public docs as a low-risk, high-reviewability task
 
 ### executor/
 Creates and validates small candidate changes.

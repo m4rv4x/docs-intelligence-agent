@@ -13,14 +13,14 @@
 - [ ] Add cooldown support for repeated suggestions
 
 ## Phase 2 — Observation layer
-- [ ] Implement repo scanner
+- [x] Implement repo scanner
 - [ ] Implement README quality checks
-- [ ] Implement docs-drift heuristics
+- [x] Implement baseline public-doc gap detection
 - [ ] Implement missing-architecture-note detection
 
 ## Phase 3 — Planning layer
-- [ ] Rank candidate tasks by usefulness, blast radius, and public value
-- [ ] Emit one small proposed task at a time
+- [x] Rank a first candidate task based on missing public docs
+- [x] Emit one small proposed task at a time
 - [ ] Add explicit approval checkpoints
 
 ## Phase 4 — Execution layer
@@ -35,6 +35,6 @@
 - [ ] Draft lessons learned and failure-analysis updates
 
 ## Phase 6 — Hermes integration
-- [ ] Point the `public-builder` profile at this repo by default
+- [x] Point the `public-builder` profile at this repo by default
 - [ ] Add safe cron jobs for observation and reporting
 - [ ] Add a reusable repo-local workflow for propose/approve/execute

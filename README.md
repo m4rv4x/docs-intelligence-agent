@@ -118,5 +118,34 @@ See [ROADMAP.md](./ROADMAP.md) for the detailed sequence.
 
 ## Current status
 
-This is a repository skeleton and positioning pass for the first public version.
-The next step is to implement the observer and planner loop with tight scope and clear validation.
+The repo now includes a first real vertical slice:
+
+- repository scanning for docs signal
+- missing public-doc detection
+- a planner that proposes the next small docs-oriented action
+- unit tests for the observer/planner loop
+
+### Current v1 behavior
+
+The observer currently reports:
+- whether a repo has a `README.md`
+- whether a `docs/` directory exists
+- Python and Markdown file counts
+- whether these public docs are missing:
+  - `CHANGELOG.md`
+  - `ROADMAP.md`
+  - `docs/architecture.md`
+  - `docs/lessons-learned.md`
+  - `docs/failure-analysis.md`
+
+The planner currently turns that into a bounded proposal:
+- if key public docs are missing -> propose `add_missing_public_docs`
+- otherwise -> emit a no-op / no-small-gap result
+
+### Validation
+
+Current validation command:
+
+```bash
+python -m unittest discover -s tests -v
+```
