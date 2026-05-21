@@ -43,6 +43,7 @@ Implemented in v0.1 slice:
 - detect `docs/` presence
 - count Markdown and Python files
 - detect missing public docs for repo storytelling and trust artifacts
+- score README quality using lightweight section heuristics
 
 ### planner/
 Turns observations into ranked, bounded work items.
@@ -84,6 +85,9 @@ Planned responsibilities:
 - lessons learned notes
 - failure analysis notes
 - devlog snippets
+
+Implemented in v0.1.1 slice:
+- render a Markdown observer report for async summaries and future cron delivery
 
 ### policies/
 Holds explicit taste and safety rules.

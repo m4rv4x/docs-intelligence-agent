@@ -110,6 +110,7 @@ See [ROADMAP.md](./ROADMAP.md) for the detailed sequence.
 ## Key docs
 
 - [docs/architecture.md](./docs/architecture.md)
+- [docs/example-observer-report.md](./docs/example-observer-report.md)
 - [docs/lessons-learned.md](./docs/lessons-learned.md)
 - [docs/failure-analysis.md](./docs/failure-analysis.md)
 - [ROADMAP.md](./ROADMAP.md)
@@ -131,6 +132,7 @@ The observer currently reports:
 - whether a repo has a `README.md`
 - whether a `docs/` directory exists
 - Python and Markdown file counts
+- a lightweight README quality score
 - whether these public docs are missing:
   - `CHANGELOG.md`
   - `ROADMAP.md`
@@ -142,6 +144,12 @@ The planner currently turns that into a bounded proposal:
 - if key public docs are missing -> propose `add_missing_public_docs`
 - otherwise -> emit a no-op / no-small-gap result
 
+The social layer now also renders a Markdown observer report with:
+- repo signal summary
+- missing or weak public artifacts
+- best next task
+- risk and reviewability summary
+
 ### Validation
 
 Current validation command:
@@ -149,3 +157,9 @@ Current validation command:
 ```bash
 python -m unittest discover -s tests -v
 ```
+
+## GitHub workflow defaults
+
+The repository now includes:
+- a pull request template with rationale, risk, tradeoffs, and validation
+- an issue template for small, reviewable repo improvements

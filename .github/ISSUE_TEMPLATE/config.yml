@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Docs Intelligence Agent discussions
+    url: https://github.com/m4rv4x/docs-intelligence-agent/discussions
+    about: Use discussions for broader strategy or positioning conversations.
