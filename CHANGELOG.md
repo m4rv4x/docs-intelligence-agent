@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Changed
+- README quality heuristics now parse actual Markdown headings, ignore fenced code blocks, and accept common heading-level and capitalization variations
+
 ### Added
 - Initial flagship repository skeleton
 - Public manifesto README

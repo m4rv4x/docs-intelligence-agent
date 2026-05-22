@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 REQUIRED_PUBLIC_DOCS = [
@@ -21,6 +22,34 @@ EXPECTED_README_SECTIONS = [
     "Roadmap",
 ]
 
+HEADING_PATTERN = re.compile(r"^\s{0,3}#{2,6}\s+(.+?)\s*$")
+
+
+def _normalize_heading(text: str) -> str:
+    return text.strip().strip("#").strip().rstrip(":").casefold()
+
+
+def extract_markdown_headings(content: str) -> set[str]:
+    headings: set[str] = set()
+    inside_code_fence = False
+
+    for raw_line in content.splitlines():
+        line = raw_line.rstrip()
+        stripped = line.strip()
+
+        if stripped.startswith(("```", "~~~")):
+            inside_code_fence = not inside_code_fence
+            continue
+
+        if inside_code_fence:
+            continue
+
+        match = HEADING_PATTERN.match(line)
+        if match:
+            headings.add(_normalize_heading(match.group(1)))
+
+    return headings
+
 
 def assess_readme_quality(content: str) -> dict:
     lines = [line.strip() for line in content.splitlines()]
@@ -28,8 +57,11 @@ def assess_readme_quality(content: str) -> dict:
         (line for line in lines if line and not line.startswith("#")),
         "",
     )
+    headings = extract_markdown_headings(content)
     present_sections = [
-        section for section in EXPECTED_README_SECTIONS if f"## {section}" in content
+        section
+        for section in EXPECTED_README_SECTIONS
+        if _normalize_heading(section) in headings
     ]
     missing_sections = [
         section for section in EXPECTED_README_SECTIONS if section not in present_sections

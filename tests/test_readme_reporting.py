@@ -2,12 +2,36 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from src.observer.github_scan import assess_readme_quality, scan_repository
+from src.observer.github_scan import (
+    assess_readme_quality,
+    extract_markdown_headings,
+    scan_repository,
+)
 from src.planner.task_builder import build_next_task
 from src.social.report_writer import render_observer_report
 
 
 class ReadmeReportingTests(unittest.TestCase):
+    def test_extract_markdown_headings_ignores_code_fences_and_normalizes_case(self):
+        readme = """# Demo Project
+
+```md
+## Usage
+```
+
+### installation:
+Do setup.
+
+## ROADMAP
+Plan work.
+"""
+
+        headings = extract_markdown_headings(readme)
+
+        self.assertIn("installation", headings)
+        self.assertIn("roadmap", headings)
+        self.assertNotIn("usage", headings)
+
     def test_assess_readme_quality_flags_missing_expected_sections(self):
         readme = """# Demo Project
 
@@ -24,6 +48,29 @@ Run setup.
         self.assertIn("Validation", result["missing_sections"])
         self.assertIn("Roadmap", result["missing_sections"])
         self.assertIn("Short intro.", result["summary"])
+
+    def test_assess_readme_quality_accepts_subheadings_with_case_variations(self):
+        readme = """# Demo Project
+
+Short intro.
+
+### installation:
+Run setup.
+
+## USAGE
+Use it.
+
+#### Validation
+Run tests.
+"""
+
+        result = assess_readme_quality(readme)
+
+        self.assertEqual(result["score"], 4)
+        self.assertIn("Installation", result["present_sections"])
+        self.assertIn("Usage", result["present_sections"])
+        self.assertIn("Validation", result["present_sections"])
+        self.assertIn("Architecture", result["missing_sections"])
 
     def test_scan_repository_includes_readme_quality_and_report_renders_markdown(self):
         with tempfile.TemporaryDirectory() as tmp:
